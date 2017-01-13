@@ -72,15 +72,15 @@ function newLevel() {
             rethodPE.install();
             new java.lang.Thread({
                 run() {
-		            while (true) {
-		                java.lang.Thread.sleep(1000);
-		                if (rethodPE.isInstalled()) {
-		                    java.lang.Thread.sleep(3000);
-		                    rethodPE.setEnabled();
-		                    break;
-		                }
-		            }
-		        }
+                    while (true) {
+                        java.lang.Thread.sleep(1000);
+                        if (rethodPE.isInstalled()) {
+                            java.lang.Thread.sleep(3000);
+                            rethodPE.setEnabled();
+                            break;
+                        }
+                    }
+                }
             }).start();
         } else {
             rethodPE.setEnabled();
