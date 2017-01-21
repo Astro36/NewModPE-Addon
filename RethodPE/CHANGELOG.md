@@ -18,3 +18,9 @@ BlockLauncher addon which improves ModPE.
 - Add `R_Server.sendPrivateTip` method.
 - Add `R_Server.simpleKickPlayer` method.
 - Fix some bugs.
+
+## 2017.01.14 Update
+- Add `onServerChatListener`
+
+## 2017.01.20 Update
+- Update RethodPE for MCPE 1.0.2.1
