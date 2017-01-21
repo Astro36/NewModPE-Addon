@@ -9,7 +9,7 @@ NewModPE auto downloader for javascripts.
 ## Contributors
 Thanks to all contributors who helps to make AstroLibrary better.
 
-[https://github.com/Astro36/AstroLibrary/graphs/contributors](https://github.com/Astro36/NewModPE-Addon/graphs/contributors)
+[https://github.com/Astro36/NewModPE-Addon/graphs/contributors](https://github.com/Astro36/NewModPE-Addon/graphs/contributors)
 
 ## License
-AutoDownloader is licensed under the [LGPL 3.0](././LICENSE).
+AutoDownloader is licensed under the [LGPL 3.0](https://github.com/Astro36/NewModPE-Addon/blob/master/LICENSE).
