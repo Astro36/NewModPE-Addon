@@ -6,15 +6,20 @@ const Utils_ = net.zhuoweizhang.mcpelauncher.Utils,
     ADDON_URL_PRO = "https://github.com/ljuwon321/RethodPE-APK/raw/master/VERSION/RethodPE%20for%20PRO.apk",
     DEX_URL = "https://github.com/ljuwon321/RethodPE-APK/raw/master/VERSION/Dex/RethodPEDex.dex",
     GITHUB_URL = "https://github.com/ljuwon321/RethodPE-APK",
-    VERSIONS = ["1.0.0.16", "1.0.2.1"];
+    VERSIONS = ["1.0.0.16", "1.0.2.1"],
+    NAME = "RethodPE Downloader",
+    NAME_CODE = "rethodpe_auto_downloader",
+    VERSION = "1.0",
+    DEVELOPER = "Astro",
+    PATH = "/sdcard/games/me.astro/library/",
+    LICENSE_TEXT = "RethodPE Downloader is licensed under the GNU Lesser General Public License, Version 3 (LGPL-3.0).";
 
-let isLibraryLoaded = false;
+let CONTEXT,
+    DP,
+    theme,
+    icDownloadBitmap;
 
-function onLibraryLoaded(name, nameCode, version) {
-    if (nameCode === "me_astro_library") {
-        isLibraryLoaded = true;
-    }
-}
+
 
 function RethodPE() {
     this._addonManager = new me.astro.utils.AddonManager("com.ljuwon.rethodpe");
@@ -53,13 +58,105 @@ RethodPE.prototype.setEnabled = function () {
     this._addonManager.setEnabled();
 };
 
+function gui() {
+    CONTEXT.runOnUiThread({
+        run() {
+            try {
+                let window = new me.astro.widget.Window(theme);
+                window.addLayout(icDownloadBitmap, new me.astro.widget.Layout(theme)
+                        .addView(new me.astro.widget.TextView()
+                            .setPadding(DP * 8, DP * 16, DP * 8, DP * 4)
+                            .setText("Installer")
+                            .setTextSize(24)
+                            .show())
+                        .addView(new me.astro.widget.TextView()
+                            .setText("Install the addon")
+                            .setTextSize(14)
+                            .show())
+                        .addView(new me.astro.widget.Button(theme)
+                            .setText("Install")
+                            .setEffect(() => rethodPE.install())
+                            .show())
+                        .addView(new me.astro.widget.TextView()
+                            .setText("Enable the addon")
+                            .setTextSize(14)
+                            .show())
+                        .addView(new me.astro.widget.Button(theme)
+                            .setText("Enable")
+                            .setEffect(() => rethodPE.setEnabled())
+                            .show())
+                        .addView(new me.astro.widget.Button(theme)
+                            .setText("Close")
+                            .setEffect(() => window.dismiss())
+                            .show())
+                        .show())
+                    .addLayout(me.astro.design.Bitmap.createBitmap(PATH + "ic_info_outline.png"), new me.astro.widget.Layout(theme)
+                        .addView(new me.astro.widget.TextView()
+                            .setPadding(DP * 8, DP * 16, DP * 8, DP * 4)
+                            .setText("Script Info")
+                            .setTextSize(24)
+                            .show())
+                        .addView(new me.astro.widget.TextView()
+                            .setText(NAME + " " + VERSION + "\n\nName Code: " + NAME_CODE + "\nDeveleoper: " + DEVELOPER + "\n\n")
+                            .setTextColor(me.astro.design.Color.GREY_DARK)
+                            .show())
+                        .addView(new me.astro.widget.TextView()
+                            .setPadding(DP * 8, DP * 16, DP * 8, DP * 4)
+                            .setText("License")
+                            .setTextSize(24)
+                            .show())
+                        .addView(new me.astro.widget.TextView()
+                            .setText(LICENSE_TEXT)
+                            .setTextColor(me.astro.design.Color.GREY_DARK)
+                            .show())
+
+                        .addView(new me.astro.widget.Button(theme)
+                            .setText("Close")
+                            .setEffect(() => window.dismiss())
+                            .show())
+                        .show())
+                    .setFocusable(true)
+                    .show();
+            } catch (e) {
+                print(e);
+            }
+        }
+    });
+}
+
+
+
+function onLibraryLoaded(name, nameCode, version) {
+    if (nameCode === "me_astro_library") {
+        CONTEXT = me.astro.getContext();
+        DP = CONTEXT.getResources().getDisplayMetrics().density;
+        theme = new me.astro.design.Theme({
+            primary: me.astro.design.Color.RED,
+                    primaryDark: me.astro.design.Color.RED_DARK,
+                    accent: me.astro.design.Color.RED_ACCENT
+        });
+        icDownloadBitmap = me.astro.design.Bitmap.decodeBase64("iVBORw0KGgoAAAANSUhEUgAAAMAAAADAAgMAAAAvsoSUAAAADFBMVEUAAAD///////////84wDuoAAAABHRSTlMA/wCA4LPRVwAAAQFJREFUeAHt1KFtA1AMRdEs+VXWQTqSLUOP4iUyRWmk/MOrxo8fcMl77P7+drvdeVm87RFvW7BgwYIFCxYs+BAwh/u6gjb4voIy+LmCNHjeo8cJd9BMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkEOSTQPtosGDB8c6CBf8c7Al4CxYsWLDgF/MZlb0HdH39AAAAAElFTkSuQmCC");
+        CONTEXT.runOnUiThread({
+            run() {
+                me.astro.getWindow().addView(new me.astro.widget.ImageButton(me.astro.design.Shape.CIRCLE, theme)
+                    .setEffect(gui)
+                    .setEffectImage(me.astro.design.Bitmap.resizeBitmap(icDownloadBitmap, DP * 24, DP * 24))
+                    .setImage(me.astro.design.Bitmap.resizeBitmap(icDownloadBitmap, DP * 24, DP * 24))
+                    .show())
+            }
+        });
+    }
+}
+
 function chatHook(str) {
-    if (isLibraryLoaded) {
+    if (typeof CONTEXT !== "undefined") {
         let rethodPE = new RethodPE();
         if (str === ".install") {
             rethodPE.install();
         } else if (str === ".enable") {
             rethodPE.setEnabled();
+        } else if (str === ".gui") {
+            gui();
         }
     }
 }
