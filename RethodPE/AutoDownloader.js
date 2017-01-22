@@ -59,6 +59,7 @@ RethodPE.prototype.setEnabled = function () {
 };
 
 function gui() {
+    let rethodPE = new RethodPE();
     CONTEXT.runOnUiThread({
         run() {
             try {
