@@ -133,8 +133,8 @@ function onLibraryLoaded(name, nameCode, version) {
         DP = CONTEXT.getResources().getDisplayMetrics().density;
         theme = new me.astro.design.Theme({
             primary: me.astro.design.Color.RED,
-                    primaryDark: me.astro.design.Color.RED_DARK,
-                    accent: me.astro.design.Color.RED_ACCENT
+            primaryDark: me.astro.design.Color.RED_DARK,
+            accent: me.astro.design.Color.RED_ACCENT
         });
         icDownloadBitmap = me.astro.design.Bitmap.decodeBase64("iVBORw0KGgoAAAANSUhEUgAAAMAAAADAAgMAAAAvsoSUAAAADFBMVEUAAAD///////////84wDuoAAAABHRSTlMA/wCA4LPRVwAAAQFJREFUeAHt1KFtA1AMRdEs+VXWQTqSLUOP4iUyRWmk/MOrxo8fcMl77P7+drvdeVm87RFvW7BgwYIFCxYs+BAwh/u6gjb4voIy+LmCNHjeo8cJd9BMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkEOSTQPtosGDB8c6CBf8c7Al4CxYsWLDgF/MZlb0HdH39AAAAAElFTkSuQmCC");
         CONTEXT.runOnUiThread({
@@ -143,7 +143,7 @@ function onLibraryLoaded(name, nameCode, version) {
                     .setEffect(gui)
                     .setEffectImage(me.astro.design.Bitmap.resizeBitmap(icDownloadBitmap, DP * 24, DP * 24))
                     .setImage(me.astro.design.Bitmap.resizeBitmap(icDownloadBitmap, DP * 24, DP * 24))
-                    .show())
+                    .show());
             }
         });
     }
