@@ -88,6 +88,7 @@ function showInstaller() {
                             .show())
                         .addView(new me.astro.widget.TextView()
                             .setText("After you install and enable the addon, restart BlockLauncher.")
+                            .setTextColor(me.astro.design.Color.GREY_DARK)
                             .show())
                         .addView(new me.astro.widget.Button(theme)
                             .setText("Close")
