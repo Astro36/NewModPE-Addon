@@ -51,7 +51,7 @@ RethodPE.prototype.isEnabled = function () {
 };
 
 RethodPE.prototype.isInstalled = function () {
-    return this._addonManager.isInstalled();
+    return CONTEXT.getPackageManager().getLaunchIntentForPackage("com.ljuwon.rethodpe") !== null;
 };
 
 RethodPE.prototype.setEnabled = function () {
@@ -85,6 +85,9 @@ function showInstaller() {
                         .addView(new me.astro.widget.Button(theme)
                             .setText("Enable")
                             .setEffect(() => rethodPE.setEnabled())
+                            .show())
+                        .addView(new me.astro.widget.TextView()
+                            .setText("After you install and enable the addon, restart BlockLauncher.")
                             .show())
                         .addView(new me.astro.widget.Button(theme)
                             .setText("Close")
@@ -131,9 +134,8 @@ function showEditor() {
             try {
                 let window = new me.astro.widget.Window(theme);
                 window.addLayout(me.astro.design.Bitmap.createBitmap(PATH + "ic_edit.png"), (() => {
-                        if (rethodPE.isEnabled()) {
-                            new me.astro.widget.Layout(theme)
-                                .addView(new me.astro.widget.TextView()
+                        if (rethodPE.isInstalled() && rethodPE.isEnabled() && typeof R_Player !== "undefined") {
+                            return new me.astro.widget.Layout(theme).addView(new me.astro.widget.TextView()
                                     .setPadding(DP * 8, DP * 16, DP * 8, DP * 4)
                                     .setText("Editor")
                                     .setTextSize(24)
@@ -154,7 +156,7 @@ function showEditor() {
                                     .setOrientation(0)
                                     .show())
                                 .addView(new me.astro.widget.TextView()
-                                    .setText("Stop using arrows")
+                                    .setText("Stop moving arrows")
                                     .setTextSize(14)
                                     .show())
                                 .addView(new me.astro.widget.Layout(theme)
@@ -174,8 +176,7 @@ function showEditor() {
                                     .show())
                                 .show();
                         } else {
-                            new me.astro.widget.Layout(theme)
-                                .addView(new me.astro.widget.TextView()
+                            return new me.astro.widget.Layout(theme).addView(new me.astro.widget.TextView()
                                     .setPadding(DP * 8, DP * 16, DP * 8, DP * 4)
                                     .setText("Error")
                                     .setTextSize(24)
