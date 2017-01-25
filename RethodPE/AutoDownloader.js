@@ -11,11 +11,11 @@ const Utils_ = net.zhuoweizhang.mcpelauncher.Utils,
     NAME_CODE = "rethodpe_auto_downloader",
     VERSION = "1.0",
     DEVELOPER = "Astro",
-    PATH = "/sdcard/games/me.astro/library/",
     LICENSE_TEXT = "RethodPE Downloader is licensed under the GNU Lesser General Public License, Version 3 (LGPL-3.0).";
 
 let CONTEXT,
     DP,
+    PATH,
     theme,
     icDownloadBitmap;
 
@@ -58,7 +58,7 @@ RethodPE.prototype.setEnabled = function () {
     this._addonManager.setEnabled();
 };
 
-function gui() {
+function showInstaller() {
     let rethodPE = new RethodPE();
     CONTEXT.runOnUiThread({
         run() {
@@ -110,12 +110,87 @@ function gui() {
                             .setText(LICENSE_TEXT)
                             .setTextColor(me.astro.design.Color.GREY_DARK)
                             .show())
-
                         .addView(new me.astro.widget.Button(theme)
                             .setText("Close")
                             .setEffect(() => window.dismiss())
                             .show())
                         .show())
+                    .setFocusable(true)
+                    .show();
+            } catch (e) {
+                print(e);
+            }
+        }
+    });
+}
+
+function showEditor() {
+    let rethodPE = new RethodPE();
+    CONTEXT.runOnUiThread({
+        run() {
+            try {
+                let window = new me.astro.widget.Window(theme);
+                window.addLayout(me.astro.design.Bitmap.createBitmap(PATH + "ic_edit.png"), (() => {
+                        if (rethodPE.isEnabled()) {
+                            new me.astro.widget.Layout(theme)
+                                .addView(new me.astro.widget.TextView()
+                                    .setPadding(DP * 8, DP * 16, DP * 8, DP * 4)
+                                    .setText("Editor")
+                                    .setTextSize(24)
+                                    .show())
+                                .addView(new me.astro.widget.TextView()
+                                    .setText("Keep player inventory")
+                                    .setTextSize(14)
+                                    .show())
+                                .addView(new me.astro.widget.Layout(theme)
+                                    .addView(new me.astro.widget.Button(theme)
+                                        .setText("On")
+                                        .setEffect(() => R_Player.enableInventorySave(true))
+                                        .show())
+                                    .addView(new me.astro.widget.Button(theme)
+                                        .setText("Off")
+                                        .setEffect(() => R_Player.enableInventorySave(false))
+                                        .show())
+                                    .setOrientation(0)
+                                    .show())
+                                .addView(new me.astro.widget.TextView()
+                                    .setText("Stop using arrows")
+                                    .setTextSize(14)
+                                    .show())
+                                .addView(new me.astro.widget.Layout(theme)
+                                    .addView(new me.astro.widget.Button(theme)
+                                        .setText("On")
+                                        .setEffect(() => R_Arrow.setPause(true))
+                                        .show())
+                                    .addView(new me.astro.widget.Button(theme)
+                                        .setText("Off")
+                                        .setEffect(() => R_Arrow.setPause(false))
+                                        .show())
+                                    .setOrientation(0)
+                                    .show())
+                                .addView(new me.astro.widget.Button(theme)
+                                    .setText("Close")
+                                    .setEffect(() => window.dismiss())
+                                    .show())
+                                .show();
+                        } else {
+                            new me.astro.widget.Layout(theme)
+                                .addView(new me.astro.widget.TextView()
+                                    .setPadding(DP * 8, DP * 16, DP * 8, DP * 4)
+                                    .setText("Error")
+                                    .setTextSize(24)
+                                    .show())
+                                .addView(new me.astro.widget.TextView()
+                                    .setText("Enable RethodPE addon")
+                                    .setTextSize(14)
+                                    .show())
+                                .addView(new me.astro.widget.Button(theme)
+                                    .setText("Close")
+                                    .setEffect(() => window.dismiss())
+                                    .show())
+                                .show();
+                        }
+                    })())
                     .setFocusable(true)
                     .show();
             } catch (e) {
@@ -131,6 +206,7 @@ function onLibraryLoaded(name, nameCode, version) {
     if (nameCode === "me_astro_library") {
         CONTEXT = me.astro.getContext();
         DP = CONTEXT.getResources().getDisplayMetrics().density;
+        PATH = me.astro.getPath();
         theme = new me.astro.design.Theme({
             primary: me.astro.design.Color.RED,
             primaryDark: me.astro.design.Color.RED_DARK,
@@ -140,10 +216,15 @@ function onLibraryLoaded(name, nameCode, version) {
         CONTEXT.runOnUiThread({
             run() {
                 me.astro.getWindow().addView(new me.astro.widget.ImageButton(me.astro.design.Shape.CIRCLE, theme)
-                    .setEffect(gui)
-                    .setEffectImage(me.astro.design.Bitmap.resizeBitmap(icDownloadBitmap, DP * 24, DP * 24))
-                    .setImage(me.astro.design.Bitmap.resizeBitmap(icDownloadBitmap, DP * 24, DP * 24))
-                    .show());
+                        .setEffect(showInstaller)
+                        .setEffectImage(me.astro.design.Bitmap.resizeBitmap(icDownloadBitmap, DP * 24, DP * 24))
+                        .setImage(me.astro.design.Bitmap.resizeBitmap(icDownloadBitmap, DP * 24, DP * 24))
+                        .show())
+                    .addView(new me.astro.widget.ImageButton(me.astro.design.Shape.CIRCLE, theme)
+                        .setEffect(showEditor)
+                        .setEffectImage(me.astro.design.Bitmap.resizeBitmap(me.astro.design.Bitmap.createBitmap(PATH + "ic_edit.png"), DP * 24, DP * 24))
+                        .setImage(me.astro.design.Bitmap.resizeBitmap(me.astro.design.Bitmap.createBitmap(PATH + "ic_edit.png"), DP * 24, DP * 24))
+                        .show());
             }
         });
     }
@@ -156,8 +237,10 @@ function chatHook(str) {
             rethodPE.install();
         } else if (str === ".enable") {
             rethodPE.setEnabled();
-        } else if (str === ".gui") {
-            gui();
+        } else if (str === ".installer") {
+            showInstaller();
+        } else if (str === ".editor") {
+            showEditor();
         }
     }
 }
