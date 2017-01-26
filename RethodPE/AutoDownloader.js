@@ -232,10 +232,16 @@ function onLibraryLoaded(name, nameCode, version) {
     }
 }
 
+function preventChat() {
+    CONTEXT.nativeSetTextboxText("");
+    CONTEXT.updateTextboxText("");
+}
+
 function chatHook(str) {
     if (typeof CONTEXT !== "undefined") {
         let rethodPE = new RethodPE();
         if (str === ".install") {
+            //example: use preventDefault() and preventChat() here.
             rethodPE.install();
         } else if (str === ".enable") {
             rethodPE.setEnabled();
