@@ -43,7 +43,7 @@ RethodPE.prototype.install = function () {
             return;
         }
     }
-    ModPE.showTipMessage("Error: Unsupported version");
+    me.astro.widget.Toast.show("Error: This version is not supported. Check your Minecraft PE version.");
 };
 
 RethodPE.prototype.isEnabled = function () {
@@ -262,6 +262,7 @@ function onLibraryLoaded(name, nameCode, version) {
     }
 }
 
+// Thanks to Vertex-Client
 function preventChat() {
     CONTEXT.nativeSetTextboxText("");
     CONTEXT.updateTextboxText("");
@@ -271,13 +272,20 @@ function chatHook(str) {
     if (typeof CONTEXT !== "undefined") {
         let rethodPE = new RethodPE();
         if (str === ".install") {
-            //example: use preventDefault() and preventChat() here.
+            preventDefault();
+            preventChat();
             rethodPE.install();
         } else if (str === ".enable") {
+            preventDefault();
+            preventChat();
             rethodPE.setEnabled();
         } else if (str === ".installer") {
+            preventDefault();
+            preventChat();
             showInstaller();
         } else if (str === ".editor") {
+            preventDefault();
+            preventChat();
             showEditor();
         }
     }
