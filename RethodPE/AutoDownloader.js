@@ -245,6 +245,7 @@ function onLibraryLoaded(name, nameCode, version) {
             accent: me.astro.design.Color.RED_ACCENT
         });
         icDownloadBitmap = me.astro.design.Bitmap.decodeBase64("iVBORw0KGgoAAAANSUhEUgAAAMAAAADAAgMAAAAvsoSUAAAADFBMVEUAAAD///////////84wDuoAAAABHRSTlMA/wCA4LPRVwAAAQFJREFUeAHt1KFtA1AMRdEs+VXWQTqSLUOP4iUyRWmk/MOrxo8fcMl77P7+drvdeVm87RFvW7BgwYIFCxYs+BAwh/u6gjb4voIy+LmCNHjeo8cJd9BMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkEOSTQPtosGDB8c6CBf8c7Al4CxYsWLDgF/MZlb0HdH39AAAAAElFTkSuQmCC");
+        me.astro.widget.NotificationWindow.getInstance().addNotification("RethodPE", "BlockLauncher addon which improves ModPE API.");
         CONTEXT.runOnUiThread({
             run() {
                 me.astro.getWindow().addView(new me.astro.widget.ImageButton(me.astro.design.Shape.CIRCLE, theme)
