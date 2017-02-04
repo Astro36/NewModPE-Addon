@@ -1,5 +1,5 @@
 # RethodPE Downloader
-![logo](https://github.com/Astro36/NewModPE-Addon/blob/master/res/img_rethodpe_downloader.png)
+![logo](https://github.com/Astro36/NewModPE-Addon/blob/master/RethodPE/res/img_rethodpe_downloader.png)
 NewModPE auto downloader for javascripts.
 
 ## What is RethodPE
