@@ -13,28 +13,8 @@ BlockLauncher addon which improves ModPE.
 
 ## Change Log
 
-### 2017.01.07 Update
+### 1.0
 - First release.
-
-### 2017.01.08 Update
-- Add `R_Server.sendPopupMessage` method.
-- Add `R_Server.sendTipMessage` method.
-- Fix `R_Server.sendSimpleChat` method.
-
-### 2017.01.13 Update
-- Add `R_Server.kickPlayer` method.
-- Add `R_Server.sendChat` method.
-- Add `R_Server.sendPrivateChat` method.
-- Add `R_Server.sendPrivatePopup` method.
-- Add `R_Server.sendPrivateTip` method.
-- Add `R_Server.simpleKickPlayer` method.
-- Fix some bugs.
-
-### 2017.01.14 Update
-- Add `onServerChatListener`
-
-### 2017.01.20 Update
-- Update RethodPE for MCPE 1.0.2.1
 
 ## Contributors
 Thanks to all contributors who helps to make RethodPE Downloader better.
