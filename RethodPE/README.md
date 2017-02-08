@@ -7,7 +7,7 @@ BlockLauncher addon which improves ModPE.
 [NewModPE](https://github.com/ManDongI/NewModPE) - [RethodPE](https://github.com/ljuwon321/NewModPE)
 
 ## How to Install
-1. Download [AstroLibrary](https://github.com/Astro36/AstroLibrary) (version >= 2.0).
+1. Download [AstroLibrary](https://github.com/Astro36/AstroLibrary/releases) (version >= 2.0).
 2. Download [AutoDownload](https://github.com/Astro36/NewModPE-Addon/blob/master/RethodPE/AutoDownloader.js).
 3. Apply `AstroLibrary` and `AutoDownloader`.
 
