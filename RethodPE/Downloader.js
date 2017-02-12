@@ -1,3 +1,10 @@
+/**
+ * @file RethodPE auto downloader for javascripts
+ * @author Astro <astr36@naver.com>
+ * @version 1.0
+ * @license LGPL-3.0
+ */
+
 const Utils_ = net.zhuoweizhang.mcpelauncher.Utils,
     PATH_FREE = "/sdcard/games/com.mojang/RethodPE for Free.apk",
     PATH_PRO = "/sdcard/games/com.mojang/RethodPE for Pro.apk",
