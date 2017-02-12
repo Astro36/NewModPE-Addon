@@ -1,6 +1,6 @@
 # RethodPE Downloader
 ![logo](https://github.com/Astro36/NewModPE-Addon/blob/master/RethodPE/res/img_rethodpe_downloader.png)
-NewModPE auto downloader for javascripts.
+RethodPE auto downloader for javascripts.
 
 ## What is RethodPE
 BlockLauncher addon which improves ModPE.
@@ -8,8 +8,8 @@ BlockLauncher addon which improves ModPE.
 
 ## How to Install
 1. Download [AstroLibrary](https://github.com/Astro36/AstroLibrary/releases) (version >= 2.0).
-2. Download [AutoDownload](https://github.com/Astro36/NewModPE-Addon/blob/master/RethodPE/AutoDownloader.js).
-3. Apply `AstroLibrary` and `AutoDownloader`.
+2. Download [Downloader](https://github.com/Astro36/NewModPE-Addon/blob/master/RethodPE/Downloader.min.js).
+3. Apply `AstroLibrary` and `Downloader`.
 
 ## Change Log
 
