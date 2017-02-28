@@ -16,6 +16,10 @@ BlockLauncher addon which improves ModPE.
 ### 1.0
 - First release.
 
+### 1.1
+- Support MCPE 1.0.3.12
+- Support AstroLibrary 2.1 and upper.
+
 ## Contributors
 Thanks to all contributors who helps to make RethodPE Downloader better.
 

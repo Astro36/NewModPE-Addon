@@ -1,7 +1,7 @@
 /**
  * @file RethodPE auto downloader for javascripts
  * @author Astro <astr36@naver.com>
- * @version 1.0
+ * @version 1.1
  * @license LGPL-3.0
  */
 
@@ -13,10 +13,10 @@ const Utils_ = net.zhuoweizhang.mcpelauncher.Utils,
     ADDON_URL_PRO = "https://github.com/ljuwon321/RethodPE-APK/raw/master/VERSION/RethodPE%20for%20PRO.apk",
     DEX_URL = "https://github.com/ljuwon321/RethodPE-APK/raw/master/VERSION/Dex/RethodPEDex.dex",
     GITHUB_URL = "https://github.com/ljuwon321/RethodPE-APK",
-    VERSIONS = ["1.0.0.16", "1.0.2.1"],
+    VERSIONS = ["1.0.0.16", "1.0.2.1", "1.0.3.12"],
     NAME = "RethodPE Downloader",
     NAME_CODE = "rethodpe_downloader",
-    VERSION = "1.0",
+    VERSION = "1.1",
     DEVELOPER = "Astro",
     LICENSE_TEXT = "RethodPE Downloader is licensed under the GNU Lesser General Public License, Version 3 (LGPL-3.0).";
 
@@ -70,7 +70,7 @@ function showInstaller() {
     CONTEXT.runOnUiThread({
         run() {
             try {
-                let window = new me.astro.widget.Window(theme);
+                let window = new me.astro.window.Window(theme);
                 window.addLayout(icDownloadBitmap, new me.astro.widget.Layout(theme)
                         .addView(new me.astro.widget.TextView()
                             .setPadding(DP * 8, DP * 16, DP * 8, DP * 4)
@@ -140,7 +140,7 @@ function showEditor() {
     CONTEXT.runOnUiThread({
         run() {
             try {
-                let window = new me.astro.widget.Window(theme);
+                let window = new me.astro.window.Window(theme);
                 window.addLayout(me.astro.design.Bitmap.createBitmap(PATH + "ic_edit.png"), (() => {
                         if (rethodPE.isInstalled() && rethodPE.isEnabled() && typeof R_Player !== "undefined") {
                             return new me.astro.widget.Layout(theme).addView(new me.astro.widget.TextView()
@@ -252,7 +252,7 @@ function onLibraryLoaded(name, nameCode, version) {
             accent: me.astro.design.Color.RED_ACCENT
         });
         icDownloadBitmap = me.astro.design.Bitmap.decodeBase64("iVBORw0KGgoAAAANSUhEUgAAAMAAAADAAgMAAAAvsoSUAAAADFBMVEUAAAD///////////84wDuoAAAABHRSTlMA/wCA4LPRVwAAAQFJREFUeAHt1KFtA1AMRdEs+VXWQTqSLUOP4iUyRWmk/MOrxo8fcMl77P7+drvdeVm87RFvW7BgwYIFCxYs+BAwh/u6gjb4voIy+LmCNHjeo8cJd9BMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgmACQTAGKYANBMACgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkECQSCGKQQNBIICgkEOSTQPtosGDB8c6CBf8c7Al4CxYsWLDgF/MZlb0HdH39AAAAAElFTkSuQmCC");
-        me.astro.widget.NotificationWindow.getInstance().addNotification("RethodPE", "BlockLauncher addon which improves ModPE API.");
+        me.astro.window.NotificationWindow.getInstance().addNotification("RethodPE", "BlockLauncher addon which improves ModPE API.");
         CONTEXT.runOnUiThread({
             run() {
                 me.astro.getWindow().addView(new me.astro.widget.ImageButton(me.astro.design.Shape.CIRCLE, theme)
